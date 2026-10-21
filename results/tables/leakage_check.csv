@@ -1,0 +1,11 @@
+metric,value
+train_generated,929
+dropped_test_near_dup,0
+dropped_train_near_dup,0
+train,824
+val,105
+test,200
+max_sim_train_to_test_p50,0.153
+max_sim_train_to_test_p95,0.295
+max_sim_train_to_test_max,0.455
+company_name_overlap_train_test,0

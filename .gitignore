@@ -1,0 +1,47 @@
+# --- Secrets ---
+.env
+.env.*
+!.env.example
+*.key
+hf_token*
+secrets/
+
+# --- Real (private) recruitment emails: NEVER commit ---
+# Raw and anonymized-but-unreviewed real emails live here.
+data/real_private/*
+!data/real_private/README.md
+*.eml
+*.mbox
+*.msg
+
+# --- Generation working files (raw API responses, logs) ---
+data/generated/**/work/
+data/generated/raw_responses/
+data/generated/*.log
+
+# --- Model artifacts / checkpoints (pushed to HF Hub instead) ---
+checkpoints/
+outputs/
+runs/
+wandb/
+*.safetensors
+*.bin
+*.pt
+*.gguf
+adapter_model*/
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+
+# --- OS / editors ---
+.DS_Store
+.vscode/
+.idea/

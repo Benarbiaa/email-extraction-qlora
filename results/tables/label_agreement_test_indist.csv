@@ -1,0 +1,12 @@
+field,agreement,n_disagree,n
+email_type,0.990,1,100
+company,1.000,0,100
+job_title,0.990,1,100
+contract_type,0.980,2,100
+work_mode,0.990,1,100
+stage,1.000,0,100
+sender_role,0.990,1,100
+action_required,1.000,0,100
+deadline,1.000,0,100
+next_step,0.980,2,100
+ALL_FIELDS,0.920,8,100

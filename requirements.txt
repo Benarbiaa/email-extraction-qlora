@@ -1,0 +1,5 @@
+# Local: data generation (ingest/validate) + checks
+jsonschema>=4.22
+
+# Colab/Kaggle: training + eval (install there, not needed locally)
+# torch, transformers, peft, trl, bitsandbytes, accelerate, datasets

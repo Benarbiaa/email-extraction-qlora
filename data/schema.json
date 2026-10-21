@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "email-extraction-qlora/schema/v1",
+  "title": "RecruitmentEmailRecord",
+  "description": "Structured record extracted from one recruitment/HR email. Frozen v1 (2026-10-21). Field order below is the canonical serialization order. Labeling semantics live in data/labeling_rules.md.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "email_type",
+    "company",
+    "job_title",
+    "contract_type",
+    "work_mode",
+    "stage",
+    "sender_role",
+    "action_required",
+    "deadline",
+    "next_step"
+  ],
+  "properties": {
+    "email_type": {
+      "description": "What this email is (its primary purpose).",
+      "enum": [
+        "application_ack",
+        "interview_invite",
+        "assessment_request",
+        "scheduling",
+        "info_request",
+        "rejection",
+        "offer",
+        "networking_cold_outreach",
+        "other"
+      ]
+    },
+    "company": {
+      "description": "Hiring company (the employer), not the ATS or job board.",
+      "type": ["string", "null"],
+      "minLength": 1
+    },
+    "job_title": {
+      "description": "Role title as written, without contract type, gender markers or reference codes.",
+      "type": ["string", "null"],
+      "minLength": 1
+    },
+    "contract_type": {
+      "enum": ["internship", "apprenticeship", "CDI", "CDD", "freelance", null]
+    },
+    "work_mode": {
+      "description": "Work arrangement of the job, NOT the interview format.",
+      "enum": ["onsite", "hybrid", "remote", null]
+    },
+    "stage": {
+      "description": "Where the candidacy stands after this email.",
+      "enum": [
+        "applied",
+        "screening",
+        "technical_interview",
+        "final_interview",
+        "offer",
+        "closed",
+        null
+      ]
+    },
+    "sender_role": {
+      "enum": ["recruiter", "hiring_manager", "HR", "automated_system", "other"]
+    },
+    "action_required": {
+      "description": "True if the email asks the candidate to do something.",
+      "type": "boolean"
+    },
+    "deadline": {
+      "description": "Due date of the requested action (YYYY-MM-DD), resolved against the email's Date header. Not the interview date.",
+      "type": ["string", "null"],
+      "pattern": "^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])$"
+    },
+    "next_step": {
+      "description": "Short English summary of the next concrete step, or null.",
+      "type": ["string", "null"],
+      "minLength": 1,
+      "maxLength": 120
+    }
+  },
+  "allOf": [
+    {
+      "description": "No action, no deadline.",
+      "if": { "properties": { "action_required": { "const": false } } },
+      "then": { "properties": { "deadline": { "const": null } } }
+    }
+  ]
+}
