@@ -142,6 +142,6 @@ python scripts/analyze.py                     # plots, CIs, error analysis
 - `src/` — `train.py`, `infer.py`, `eval.py`, prompts, validation
 - `scripts/` — data generation, relabeling, splits, review, analysis
 - `notebooks/` — baselines, training + evaluation, demo (Colab)
-- `app/` — Gradio demo (`python app/app.py --adapter <dir> --share`, GPU)
+- `app/` — Gradio demo (`python app/app.py --share`, GPU; loads the adapter from the Hub)
 - `kaggle/` — alternative runner for Kaggle notebooks
 - `results/` — predictions, tables, plots, error analysis

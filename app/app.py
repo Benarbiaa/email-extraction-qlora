@@ -3,7 +3,7 @@
 Runs the fine-tuned adapter (4-bit base + LoRA) on a GPU. On Colab use notebooks/03_demo.ipynb,
 which passes --share for a temporary public link.
 
-    python app/app.py --adapter <adapter dir or hub id> [--merge] [--share]
+    python app/app.py [--adapter <dir or hub id>] [--merge] [--share]
 """
 
 from __future__ import annotations
@@ -99,7 +99,8 @@ def build(tok, model):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--model", default=DEFAULT_MODEL)
-    ap.add_argument("--adapter", required=True)
+    ap.add_argument("--adapter", default="BenarbiaEmir/qwen3-4b-recruitment-email-json-qlora",
+                    help="adapter dir or Hugging Face Hub id")
     ap.add_argument("--merge", action="store_true", help="merge the adapter for faster generation")
     ap.add_argument("--share", action="store_true", help="temporary public gradio.live link")
     args = ap.parse_args()
