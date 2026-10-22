@@ -121,6 +121,12 @@ def main():
     )
     trainer = SFTTrainer(model=model, args=config, processing_class=tok, peft_config=lora,
                          train_dataset=Dataset.from_list(train_ex), eval_dataset=Dataset.from_list(val_ex))
+    # fp16 mixed precision needs fp32 master weights: recent TRL/PEFT may create the LoRA
+    # weights in the checkpoint's bf16, which the T4's fp16 grad scaler cannot unscale.
+    trainable = [p for p in trainer.model.parameters() if p.requires_grad]
+    print("trainable dtypes before cast:", sorted({str(p.dtype) for p in trainable}))
+    for p in trainable:
+        p.data = p.data.float()
     trainer.model.print_trainable_parameters()
 
     last = get_last_checkpoint(str(out)) if out.exists() else None
