@@ -1,3 +1,5 @@
 name,gold,verified_gold,n,valid_json,schema_valid,rule_consistent,exact_match,acc_email_type,acc_company,acc_job_title,acc_contract_type,acc_work_mode,acc_stage,acc_sender_role,acc_action_required,acc_deadline,acc_next_step,next_step_token_f1,latency_mean_s
 base_zeroshot,test_provisional.jsonl,False,200,1.0000,0.9150,0.7600,0.1950,0.6100,0.8950,0.8100,0.7450,0.7650,0.7150,0.7250,0.8950,0.6900,0.8100,0.4115,8.3466
 base_fewshot,test_provisional.jsonl,False,200,1.0000,0.9250,0.8600,0.2250,0.6650,0.9050,0.6950,0.7500,0.7850,0.7750,0.7900,0.9100,0.7150,0.8500,0.5607,8.7317
+ft_qlora_v1_val,val.jsonl,True,105,1.0000,1.0000,1.0000,0.8762,0.9810,0.9905,0.9905,0.9810,0.9905,0.9810,0.9619,0.9905,0.9905,0.9714,0.8161,13.4224
+ft_qlora_v1,test_provisional.jsonl,False,200,1.0000,0.9850,0.9800,0.8350,0.9650,0.9800,0.9600,0.9750,0.9700,0.9350,0.9650,0.9650,0.9700,0.9350,0.7887,13.3473

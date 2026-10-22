@@ -1,0 +1,38 @@
+{
+ "run_name": "qlora_v1",
+ "base_model": "Qwen/Qwen3-4B-Instruct-2507",
+ "args": {
+  "model": "Qwen/Qwen3-4B-Instruct-2507",
+  "train": "/content/email-extraction-qlora/data/splits/train.jsonl",
+  "val": "/content/email-extraction-qlora/data/splits/val.jsonl",
+  "output_dir": "/content/drive/MyDrive/email-extraction-qlora/runs/qlora_v1",
+  "run_name": "qlora_v1",
+  "epochs": 2,
+  "lr": 0.0002,
+  "batch_size": 2,
+  "grad_accum": 8,
+  "max_length": 1024,
+  "lora_r": 16,
+  "lora_alpha": 32,
+  "lora_dropout": 0.05,
+  "eval_steps": 10,
+  "save_steps": 10,
+  "seed": 42,
+  "limit": null,
+  "max_steps": -1
+ },
+ "train_sha256": "ee9d0cf7f746d76d4a1566923d439a822a0367756f5681a6645287c64b544bb2",
+ "val_sha256": "cbe5fe547adaa24ab4c9f7557b9d0f1b1f9425781ad6a305015d14585f00d202",
+ "n_train": 824,
+ "n_val": 105,
+ "best_checkpoint": "/content/drive/MyDrive/email-extraction-qlora/runs/qlora_v1/checkpoint-104",
+ "best_eval_loss": 0.05571168288588524,
+ "global_steps": 104,
+ "versions": {
+  "torch": "2.11.0+cu130",
+  "transformers": "5.20.2",
+  "peft": "0.21.2",
+  "trl": "1.16.0",
+  "bitsandbytes": "0.50.2"
+ }
+}
