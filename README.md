@@ -139,6 +139,7 @@ python scripts/analyze.py                     # plots, CIs, error analysis
 - `data/` — schema, labeling rules, generation prompts, splits, review sheets
 - `src/` — `train.py`, `infer.py`, `eval.py`, prompts, validation
 - `scripts/` — data generation, relabeling, splits, review, analysis
-- `notebooks/` — baselines, training + evaluation (Colab)
+- `notebooks/` — baselines, training + evaluation, demo (Colab)
+- `app/` — Gradio demo (`python app/app.py --adapter <dir> --share`, GPU)
 - `kaggle/` — alternative runner for Kaggle notebooks
 - `results/` — predictions, tables, plots, error analysis
