@@ -30,7 +30,9 @@ from src.prompting import FINETUNE_SYSTEM_PROMPT, SYSTEM_PROMPT, chat_messages, 
 DEFAULT_MODEL = "Qwen/Qwen3-4B-Instruct-2507"
 
 
-def load(model_id: str = DEFAULT_MODEL, adapter: str | None = None, four_bit: bool = True):
+def load(model_id: str = DEFAULT_MODEL, adapter: str | None = None, four_bit: bool = True, merge: bool = False):
+    """merge: fold the LoRA weights into the base layers (faster generation; with 4-bit the merged
+    weights are re-quantized, so outputs can differ slightly from the unmerged adapter)."""
     import torch
     from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 
@@ -42,6 +44,8 @@ def load(model_id: str = DEFAULT_MODEL, adapter: str | None = None, four_bit: bo
     if adapter:
         from peft import PeftModel
         model = PeftModel.from_pretrained(model, adapter)
+        if merge:
+            model = model.merge_and_unload()
     model.eval()
     return tok, model
 
@@ -77,6 +81,7 @@ def main():
     ap.add_argument("--limit", type=int, default=None)
     ap.add_argument("--max-new-tokens", type=int, default=256)
     ap.add_argument("--no-4bit", action="store_true")
+    ap.add_argument("--merge", action="store_true", help="merge the adapter into the base weights (finetuned mode)")
     args = ap.parse_args()
     if args.mode == "finetuned" and not args.adapter:
         raise SystemExit("--mode finetuned needs --adapter")
@@ -89,7 +94,7 @@ def main():
     out.parent.mkdir(parents=True, exist_ok=True)
     done = {json.loads(line)["id"] for line in open(out, encoding="utf-8")} if out.exists() else set()
 
-    tok, model = load(args.model, args.adapter, four_bit=not args.no_4bit)
+    tok, model = load(args.model, args.adapter, four_bit=not args.no_4bit, merge=args.merge)
     todo = [r for r in rows if r["id"] not in done]
     prompt_tokens = len(tok(render(tok, chat_messages(rows[0]["email"], few_shot, system)))["input_ids"])
     print(f"{args.mode} with {args.model}: {len(todo)} to predict ({len(done)} already in {out}); "

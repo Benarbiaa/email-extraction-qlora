@@ -2,4 +2,6 @@
 jsonschema>=4.22
 
 # Colab/Kaggle: training + eval (install there, not needed locally)
-# torch, transformers, peft, trl, bitsandbytes, accelerate, datasets
+# torch, transformers, peft, trl, bitsandbytes, accelerate, datasets, gradio (demo)
+
+# Local analysis: matplotlib (scripts/analyze.py)
