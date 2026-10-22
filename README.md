@@ -17,6 +17,15 @@ base model prompted zero-shot and few-shot.
 > they passed automatic validation and a blind cross-model relabeling, but the hand review is not
 > done yet. All numbers below may move once it is.
 
+## Demo
+
+![Gradio demo](docs/demo.png)
+
+Paste an email (with its `From:` / `Date:` / `Subject:` headers), get the record plus a schema and
+rule check. Run it on a Colab T4 with [`notebooks/03_demo.ipynb`](notebooks/03_demo.ipynb)
+(temporary public link) or `python app/app.py --share` on any CUDA GPU; the adapter is downloaded
+from the Hub. ~13–20 s per email on a T4.
+
 ## Results
 
 200 test emails, 4-bit base model in every row, greedy decoding.
