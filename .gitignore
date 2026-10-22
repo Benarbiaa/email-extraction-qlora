@@ -33,7 +33,7 @@ adapter_model*/
 # --- Python ---
 __pycache__/
 *.py[cod]
-.venv/
+.venv*/
 venv/
 .ipynb_checkpoints/
 .pytest_cache/

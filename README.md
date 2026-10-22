@@ -4,6 +4,8 @@ Fine-tuning **Qwen3-4B-Instruct-2507** with QLoRA (free T4 GPU) to turn recruitm
 (French, English or mixed) into a schema-validated JSON record, and measuring it against the same
 base model prompted zero-shot and few-shot.
 
+**Model:** [huggingface.co/BenarbiaEmir/qwen3-4b-recruitment-email-json-qlora](https://huggingface.co/BenarbiaEmir/qwen3-4b-recruitment-email-json-qlora) (LoRA adapter, usage snippet in the model card).
+
 ```json
 {"email_type": "assessment_request", "company": "Tesselmind", "job_title": "Software Engineer",
  "contract_type": "internship", "work_mode": "hybrid", "stage": "screening",
