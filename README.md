@@ -136,6 +136,18 @@ scored separately), latency. Invalid outputs count as wrong on every field.
   brands, and a few may collide with real companies by accident.
 - Small subgroups: edge-case breakdowns in `results/tables/metrics_*.json` have n = 3–55.
 
+## Future improvements
+
+1. **Real-world test split**: 20–30 of my own recruitment emails, anonymized (names, companies,
+   links replaced), labeled by hand and scored separately from the synthetic test set. This is
+   the only way to know how much of the 83.5% survives real inboxes. The folder is already set up
+   (`data/real_private/`, gitignored).
+2. **Hand review of the synthetic test labels**: the protocol and tooling exist
+   ([`scripts/review.py`](scripts/review.py)): blind-label 50 emails to measure human-vs-gold
+   agreement, review all 200 with the gold, blind-relabel and model labels side by side, then
+   freeze `data/splits/test.jsonl` and re-score all three models. Settling the two open
+   ambiguities (assessment stage, `next_step` on acknowledgements) would come first.
+
 ## Reproduce
 
 ```bash
