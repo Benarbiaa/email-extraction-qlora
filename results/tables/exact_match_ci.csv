@@ -1,0 +1,4 @@
+model,gold,n,exact_match,ci95_low,ci95_high,diff_vs_ft,diff_ci95_low,diff_ci95_high
+base_zeroshot,test_provisional.jsonl,200,0.1950,0.1400,0.2500,-0.6400,-0.7100,-0.5650
+base_fewshot,test_provisional.jsonl,200,0.2250,0.1700,0.2850,-0.6100,-0.6800,-0.5400
+ft_qlora_v1,test_provisional.jsonl,200,0.8350,0.7800,0.8850
